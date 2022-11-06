@@ -1,0 +1,21 @@
+{{ template "head" .PageTitle }}
+<body>
+    {{ template "header" .Username }}
+    <main>
+        <h2>{{ .CaptionTitle }}</h2>
+        {{range .Entries }}
+        <p>{{ .Entry }}<br><div style="text-align: right"><b>{{ .Poster }} - {{ .Date }}</b></div></p>
+        {{ end }}
+        {{ if .Username }}
+        <form class="main-form" action="/post/girdi/{{ .CaptionID }}" method="post">
+            <p class="main-form">
+                <label class="main-form" for="entry">Girdi:</label>
+                <textarea class="main-form" name="entry" rows="10" cols="80"></textarea><br>
+            </p>
+            <p class="main-form">
+                <input class="main-form" type="submit" value="Gönder">
+            </p>
+        </form>
+        {{ end }}
+    </main>
+{{ template "footer" }}

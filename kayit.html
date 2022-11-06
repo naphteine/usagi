@@ -1,0 +1,24 @@
+{{ template "head" "Üye Kayıt • Paytak Sözlük"}}
+<body>
+    {{ template "header" .Username }}
+    <main>
+        <h2>Üye kaydı</h2>
+        <form class="main-form" action="/post/kayit" method="post">
+            <p class="main-form">
+                <label class="main-form" for="name">Üye adı:</label>
+                <input class="main-form" type="text" id="name" name="name" maxlength="64"><br>
+            </p>
+            <p class="main-form">
+                <label class="main-form" for="email">E-mail:</label>
+                <input class="main-form" type="text" id="email" name="email" maxlength="253"><br>
+            </p>
+            <p class="main-form">
+                <label class="main-form" for="passwd">Şifre:</label>
+                <input class="main-form" type="password" id="passwd" name="passwd"><br>
+            </p>
+            <p class="main-form">
+                <input class="main-form" type="submit" value="Kayıt ol">
+            </p>
+        </form>
+    </main>
+{{ template "footer" }}

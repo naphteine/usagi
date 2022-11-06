@@ -1,0 +1,23 @@
+{{ template "head" "Başlık aç • Paytak Sözlük"}}
+<body>
+    {{ template "header" .Username }}
+    <main>
+        {{ if .Username }}
+        <form class="main-form" action="/post/baslik" method="post">
+            <p class="main-form">
+                <label class="main-form" for="caption">Başlık:</label>
+                <input class="main-form" type="text" id="caption" name="caption" maxlength="64"><br>
+            </p>
+            <p class="main-form">
+                <label class="main-form" for="entry">Girdi:</label>
+                <textarea class="main-form" name="entry" rows="10" cols="80"></textarea><br>
+            </p>
+            <p class="main-form">
+                <input class="main-form" type="submit" value="Gönder">
+            </p>
+        </form>
+        {{ else }}
+        <h3>Kayıtlı üye olmalısınız!</h3>
+        {{ end }}
+    </main>
+{{ template "footer" }}

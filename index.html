@@ -1,0 +1,15 @@
+{{ template "head" "Paytak Sözlük"}}
+<body>
+    {{ template "header" .Username }}
+    <main>
+        {{ template "sidebar" .Captions }}
+        <div class="content">
+            <h2>Son Yazılan Girdiler</h2>
+            <ul style="list-style-type: disclosure-open;">
+            {{range .Entries }}
+            <li style="margin-top: 15px;"><a href={{ .Link }}>{{ .Caption }}</a><br>{{ .Entry }}<br><div style="text-align:right">{{ .User }} - {{ .Date }}</div></li>
+            {{ end }}
+            </ul>
+        </div>
+    </main>
+{{ template "footer" }}
