@@ -1,18 +1,71 @@
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./App";
+// import "bootstrap/dist/css/bootstrap.css";
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import "bootstrap/dist/css/bootstrap.css";
+import EditMovie from "./components/EditMovie";
+import ErrorPage from "./components/ErrorPage";
+import Genres from "./components/Genres";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import ManageCatalogue from "./components/ManageCatalogue";
+import Movies from "./components/Movies";
+import Movie from "./components/Movie";
+import Search from "./components/Search";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <Home /> },
+      {
+        path: "/captions",
+        element: <Movies />,
+      },
+      {
+        path: "/caption/:id",
+        element: <Movie />,
+      },
+      {
+        path: "/genres",
+        element: <Genres />,
+      },
+      {
+        path: "/admin/movie/0",
+        element: <EditMovie />,
+      },
+      {
+        path: "/manage-catalogue",
+        element: <ManageCatalogue />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
