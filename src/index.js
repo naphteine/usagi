@@ -1,28 +1,17 @@
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// import App from "./App";
-// import "bootstrap/dist/css/bootstrap.css";
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
-
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App";
-import EditMovie from "./components/EditMovie";
-import ErrorPage from "./components/ErrorPage";
-import Genres from "./components/Genres";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import ManageCatalogue from "./components/ManageCatalogue";
-import Movies from "./components/Movies";
-import Movie from "./components/Movie";
-import Search from "./components/Search";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App';
+import EditMovie from './components/EditMovie';
+import ErrorPage from './components/ErrorPage';
+import Genres from './components/Genres';
+import GraphQL from './components/GraphQL';
+import Home from './components/Home';
+import Login from './components/Login';
+import ManageCatalogue from './components/ManageCatalogue';
+import Movies from './components/Movies';
+import Movie from './components/Movie';
+import OneGenre from './components/OneGenre';
 
 const router = createBrowserRouter([
   {
@@ -32,11 +21,11 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       {
-        path: "/captions",
+        path: "/movies",
         element: <Movies />,
       },
       {
-        path: "/caption/:id",
+        path: "/movies/:id",
         element: <Movie />,
       },
       {
@@ -44,7 +33,15 @@ const router = createBrowserRouter([
         element: <Genres />,
       },
       {
+        path: "/genres/:id",
+        element: <OneGenre />,
+      },
+      {
         path: "/admin/movie/0",
+        element: <EditMovie />,
+      },
+      {
+        path: "/admin/movie/:id",
         element: <EditMovie />,
       },
       {
@@ -52,18 +49,18 @@ const router = createBrowserRouter([
         element: <ManageCatalogue />,
       },
       {
-        path: "/search",
-        element: <Search />,
+        path: "/graphql",
+        element: <GraphQL />,
       },
       {
         path: "/login",
         element: <Login />,
       },
-    ],
-  },
-]);
+    ]
+  }
+])
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
