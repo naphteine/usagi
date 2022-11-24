@@ -15,59 +15,61 @@ function App() {
     const requestOptions = {
       method: "GET",
       credentials: "include",
-    }
+    };
 
     fetch(`${process.env.REACT_APP_BACKEND}/logout`, requestOptions)
-      .catch(error => {
+      .catch((error) => {
         console.log("error logging out", error);
       })
       .finally(() => {
         setJwtToken("");
         toggleRefresh(false);
-      })
+      });
 
     navigate("/login");
-  }
+  };
 
-  const toggleRefresh = useCallback((status) => {
-    console.log("clicked");
+  const toggleRefresh = useCallback(
+    (status) => {
+      console.log("clicked");
 
-    if (status) {
-      console.log("turning on ticking");
-      let i = setInterval(() => {
+      if (status) {
+        console.log("turning on ticking");
+        let i = setInterval(() => {
+          const requestOptions = {
+            method: "GET",
+            credentials: "include",
+          };
 
-        const requestOptions = {
-          method: "GET",
-          credentials: "include",
-        }
-
-        fetch(`${process.env.REACT_APP_BACKEND}/refresh`, requestOptions)
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.access_token) {
-              setJwtToken(data.access_token);
-            }
-          })
-          .catch(error => {
-            console.log("user is not logged in");
-          })
-      }, 600000);
-      setTickInterval(i);
-      console.log("setting tick interval to", i);
-    } else {
-      console.log("turning off ticking");
-      console.log("turning off tickInterval", tickInterval);
-      setTickInterval(null);
-      clearInterval(tickInterval);
-    }
-  }, [tickInterval])
+          fetch(`${process.env.REACT_APP_BACKEND}/refresh`, requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.access_token) {
+                setJwtToken(data.access_token);
+              }
+            })
+            .catch((error) => {
+              console.log("user is not logged in");
+            });
+        }, 600000);
+        setTickInterval(i);
+        console.log("setting tick interval to", i);
+      } else {
+        console.log("turning off ticking");
+        console.log("turning off tickInterval", tickInterval);
+        setTickInterval(null);
+        clearInterval(tickInterval);
+      }
+    },
+    [tickInterval]
+  );
 
   useEffect(() => {
     if (jwtToken === "") {
       const requestOptions = {
         method: "GET",
         credentials: "include",
-      }
+      };
 
       fetch(`${process.env.REACT_APP_BACKEND}/refresh`, requestOptions)
         .then((response) => response.json())
@@ -77,26 +79,28 @@ function App() {
             toggleRefresh(true);
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("user is not logged in", error);
-        })
+        });
     }
-  }, [jwtToken, toggleRefresh])
+  }, [jwtToken, toggleRefresh]);
 
   return (
     <div className="container">
       <div className="row">
         <div className="col">
-          <h1 className="mt-3">Go Watch a Movie!</h1>
+          <Link to="/" className="list-group-item list-group-item-action">
+            <h1 className="mt-3">usagisözlük 🐇</h1>
+          </Link>
         </div>
         <div className="col text-end">
           {jwtToken === "" ? (
             <Link to="/login">
-              <span className="badge bg-success">Login</span>
+              <span className="badge bg-success">Giriş yap</span>
             </Link>
           ) : (
             <a href="#!" onClick={logOut}>
-              <span className="badge bg-danger">Logout</span>
+              <span className="badge bg-danger">Çıkış yap</span>
             </a>
           )}
         </div>
@@ -107,20 +111,17 @@ function App() {
         <div className="col-md-2">
           <nav>
             <div className="list-group">
-              <Link to="/" className="list-group-item list-group-item-action">
-                Home
-              </Link>
               <Link
-                to="/movies"
+                to="/basliklar"
                 className="list-group-item list-group-item-action"
               >
-                Movies
+                Başlıklar
               </Link>
               <Link
-                to="/genres"
+                to="/konular"
                 className="list-group-item list-group-item-action"
               >
-                Genres
+                Konular
               </Link>
               {jwtToken !== "" && (
                 <>
@@ -128,19 +129,19 @@ function App() {
                     to="/admin/movie/0"
                     className="list-group-item list-group-item-action"
                   >
-                    Add Movie
+                    Başlık Aç
                   </Link>
                   <Link
                     to="/manage-catalogue"
                     className="list-group-item list-group-item-action"
                   >
-                    Manage Catalogue
+                    Başlıkları Düzenle
                   </Link>
                   <Link
                     to="/graphql"
                     className="list-group-item list-group-item-action"
                   >
-                    GraphQL
+                    Ara
                   </Link>
                 </>
               )}
