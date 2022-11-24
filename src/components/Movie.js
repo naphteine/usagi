@@ -1,9 +1,41 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Entry from "./Entry";
+import EntryArea from "./EntryArea";
+import TextArea from "./form/TextArea";
 
 const Movie = () => {
   const [movie, setMovie] = useState({});
   let { id } = useParams();
+
+  const jwtToken = "a";
+
+  let entries = [
+    {
+      entry: "Mükemmel bir site",
+      author: "gg",
+    },
+    {
+      entry: "Güzel tatlı hoş şeylerin birleşimi",
+      author: "kiwi",
+    },
+    {
+      entry: "Geliştirmeye açık",
+      author: "gg",
+    },
+    {
+      entry: "Site fonksiyonları basit olsa da eğlenceli bir komünitesi var",
+      author: "larapara",
+    },
+    {
+      entry: "dil ogrenmek icin ideal!!",
+      author: "erasmus",
+    },
+    {
+      entry: "ben nedense çoğu vaktimi burada geçiriyorum artık başka sitelere giresim gelmiyor",
+      author: "ayla",
+    },
+  ]
 
   useEffect(() => {
     const headers = new Headers();
@@ -33,18 +65,20 @@ const Movie = () => {
   return (
     <div>
       <h2>{movie.title}</h2>
-      <small>
-        <em>
-          Çıkış tarihi: {movie.release_date} Fiyat: {movie.runtime}TL
-        </em>
-      </small>
       <br />
       {movie.genres.map((g) => (
         <span key={g.genre} className="badge bg-secondary me-2">
           {g.genre}
         </span>
       ))}
+      {jwtToken != "" && <EntryArea />}
       <hr />
+      {entries.map((e) => (
+        <Entry
+          Entry={e.entry}
+          Author={e.author}
+        />
+      ))}
     </div>
   );
 };

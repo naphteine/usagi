@@ -31,8 +31,6 @@ const Movies = () => {
         <thead>
           <tr>
             <th>Başlık</th>
-            <th>Açılma tarihi</th>
-            <th>Başlatan</th>
           </tr>
         </thead>
         <tbody>
@@ -41,8 +39,6 @@ const Movies = () => {
               <td>
                 <Link to={`/baslik/${m.id}`}>{m.title}</Link>
               </td>
-              <td>{m.release_date}</td>
-              <td>{m.mpaa_rating}</td>
             </tr>
           ))}
         </tbody>

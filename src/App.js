@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import Alert from "./components/Alert";
+import FeatherIcon from 'feather-icons-react';
 import "./App.css";
 
 function App() {
   const [jwtToken, setJwtToken] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [alertClassName, setAlertClassName] = useState("d-none");
-
   const [tickInterval, setTickInterval] = useState();
 
   const navigate = useNavigate();
@@ -94,14 +94,23 @@ function App() {
             <h1 className="mt-3">usagisözlük 🐇</h1>
           </Link>
         </div>
-        <div className="col text-end">
+        <div className="col text-center mt-3">
+          Hello
+        </div>
+        <div className="col text-end mt-3">
           {jwtToken === "" ? (
             <Link to="/login">
-              <span className="badge bg-success">Giriş yap</span>
+              <span className="btn bg-success">
+                Giriş yap
+                <FeatherIcon icon="log-in" />
+              </span>
             </Link>
           ) : (
             <a href="#!" onClick={logOut}>
-              <span className="badge bg-danger">Çıkış yap</span>
+              <span className="btn bg-danger">
+                <span className="pr-1">Çıkış yap</span>
+                <FeatherIcon icon="log-out" />
+              </span>
             </a>
           )}
         </div>

@@ -86,11 +86,11 @@ const GraphQL = () => {
 
     return (
         <div>
-            <h2>GraphQL</h2>
+            <h2>Arama Yap</h2>
             <hr />
             <form onSubmit={handleChange}>
                 <Input
-                    title={"Search"}
+                    title={"Ara"}
                     type={"search"}
                     name={"search"}
                     className={"form-control"}
@@ -103,8 +103,6 @@ const GraphQL = () => {
                     <thead>
                         <tr>
                             <th>Movie</th>
-                            <th>Release Date</th>
-                            <th>Rating</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,12 +112,6 @@ const GraphQL = () => {
                                     <Link to={`/movies/${m.id}`}>
                                         {m.title}
                                     </Link>
-                                </td>
-                                <td>
-                                    {new Date(m.release_date).toLocaleDateString()}
-                                </td>
-                                <td>
-                                    {m.mpaa_rating}
                                 </td>
                             </tr>
                         ))}
