@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import EditMovie from "./components/EditMovie";
+import EditCaption from "./components/EditCaption";
 import ErrorPage from "./components/ErrorPage";
 import Genres from "./components/Genres";
 import GraphQL from "./components/GraphQL";
@@ -38,11 +38,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/movie/0",
-        element: <EditMovie />,
+        element: <EditCaption />,
       },
       {
         path: "/admin/movie/:id",
-        element: <EditMovie />,
+        element: <EditCaption />,
       },
       {
         path: "/manage-catalogue",

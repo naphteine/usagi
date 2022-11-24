@@ -6,7 +6,7 @@ import TextArea from "./form/TextArea";
 import Checkbox from "./form/Checkbox";
 import Swal from "sweetalert2";
 
-const EditMovie = () => {
+const EditCaption = () => {
   const navigate = useNavigate();
   const { jwtToken } = useOutletContext();
 
@@ -373,4 +373,4 @@ const EditMovie = () => {
   }
 };
 
-export default EditMovie;
+export default EditCaption;
