@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Alert from "./components/Alert";
+import "./App.css";
 
 function App() {
   const [jwtToken, setJwtToken] = useState("");
@@ -161,6 +162,9 @@ function App() {
           />
         </div>
       </div>
+      <footer>
+        Her hakkı saklıdır. 2022. Usagi Sözlük. PROTOTİP SÜRÜMÜDÜR LÜTFEN KİŞİSEL BİLGİ GİRMEYİNİZ.
+      </footer>
     </div>
   );
 }
