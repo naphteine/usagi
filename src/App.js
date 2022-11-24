@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import Alert from "./components/Alert";
 import "./App.css";
 
@@ -112,38 +112,43 @@ function App() {
         <div className="col-md-2">
           <nav>
             <div className="list-group">
-              <Link
+              <NavLink
                 to="/basliklar"
                 className="list-group-item list-group-item-action"
+                activeClassName="active"
               >
                 Başlıklar
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/konular"
                 className="list-group-item list-group-item-action"
+                activeClassName="active"
               >
                 Konular
-              </Link>
+              </NavLink>
+              <NavLink
+                to="/graphql"
+                className="list-group-item list-group-item-action"
+                activeClassName="active"
+              >
+                Ara
+              </NavLink>
               {jwtToken !== "" && (
                 <>
-                  <Link
+                  <NavLink
                     to="/admin/movie/0"
                     className="list-group-item list-group-item-action"
+                    activeClassName="active"
                   >
                     Başlık Aç
-                  </Link>
-                  <Link
+                  </NavLink>
+                  <NavLink
                     to="/manage-catalogue"
                     className="list-group-item list-group-item-action"
+                    activeClassName="active"
                   >
                     Başlıkları Düzenle
-                  </Link>
-                  <Link
-                    to="/graphql"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Ara
-                  </Link>
+                  </NavLink>
                 </>
               )}
             </div>

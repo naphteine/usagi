@@ -1,4 +1,10 @@
+body {
+    background-color: #fff0f5;
+}
+
 footer {
+    background-color: #f8dce5;
     text-align: center;
-    padding: 5rem;
+    padding: 2.5rem;
+    margin: 2.5rem;
 }
