@@ -1,41 +1,39 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import Entry from "./Entry";
 import EntryArea from "./EntryArea";
 import TextArea from "./form/TextArea";
 
 const Movie = () => {
   const [movie, setMovie] = useState({});
+  const [entry, setEntry] = useState([]);
+  const [newEntry, setNewEntry] = useState("");
   let { id } = useParams();
 
   const jwtToken = "a";
 
-  let entries = [
-    {
-      entry: "Mükemmel bir site",
-      author: "gg",
-    },
-    {
-      entry: "Güzel tatlı hoş şeylerin birleşimi",
-      author: "kiwi",
-    },
-    {
-      entry: "Geliştirmeye açık",
-      author: "gg",
-    },
-    {
-      entry: "Site fonksiyonları basit olsa da eğlenceli bir komünitesi var",
-      author: "larapara",
-    },
-    {
-      entry: "dil ogrenmek icin ideal!!",
-      author: "erasmus",
-    },
-    {
-      entry: "ben nedense çoğu vaktimi burada geçiriyorum artık başka sitelere giresim gelmiyor",
-      author: "ayla",
-    },
-  ]
+  const onChange = (event) => {
+    setNewEntry(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (newEntry.length <= 0) {
+      Swal.fire({
+        title: 'Boş girdi gönderemezsiniz!',
+        text: "",
+        icon: 'error',
+        showConfirmButton: false,
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Geri dön'
+      })
+    } else {
+      console.log(newEntry);
+    }
+  }
 
   useEffect(() => {
     const headers = new Headers();
@@ -50,6 +48,17 @@ const Movie = () => {
       .then((response) => response.json())
       .then((data) => {
         setMovie(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    fetch(`${process.env.REACT_APP_BACKEND}/entries/captions/${id}`, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data !== null) {
+          setEntry(data);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -71,9 +80,13 @@ const Movie = () => {
           {g.genre}
         </span>
       ))}
-      {jwtToken != "" && <EntryArea />}
+      {jwtToken != "" &&
+        <form onSubmit={handleSubmit}>
+          <EntryArea onChange={onChange} />
+        </form>
+      }
       <hr />
-      {entries.map((e) => (
+      {entry.map((e) => (
         <Entry
           Entry={e.entry}
           Author={e.author}
