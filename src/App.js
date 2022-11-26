@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import Alert from "./components/Alert";
-import FeatherIcon from 'feather-icons-react';
+import FeatherIcon from "feather-icons-react";
 import "./App.css";
 
 function App() {
@@ -94,9 +94,7 @@ function App() {
             <h1 className="mt-3">usagisözlük 🐇</h1>
           </Link>
         </div>
-        <div className="col text-center mt-3">
-          Hello
-        </div>
+        <div className="col text-center mt-3">Hello</div>
         <div className="col text-end mt-3">
           {jwtToken === "" ? (
             <Link to="/login">
@@ -124,21 +122,21 @@ function App() {
               <NavLink
                 to="/basliklar"
                 className="list-group-item list-group-item-action"
-                activeClassName="active"
+                activeclassname="active"
               >
                 Başlıklar
               </NavLink>
               <NavLink
                 to="/konular"
                 className="list-group-item list-group-item-action"
-                activeClassName="active"
+                activeclassname="active"
               >
                 Konular
               </NavLink>
               <NavLink
                 to="/graphql"
                 className="list-group-item list-group-item-action"
-                activeClassName="active"
+                activeclassname="active"
               >
                 Ara
               </NavLink>
@@ -147,14 +145,14 @@ function App() {
                   <NavLink
                     to="/admin/movie/0"
                     className="list-group-item list-group-item-action"
-                    activeClassName="active"
+                    activeclassname="active"
                   >
                     Başlık Aç
                   </NavLink>
                   <NavLink
                     to="/manage-catalogue"
                     className="list-group-item list-group-item-action"
-                    activeClassName="active"
+                    activeclassname="active"
                   >
                     Başlıkları Düzenle
                   </NavLink>
@@ -177,7 +175,8 @@ function App() {
         </div>
       </div>
       <footer>
-        Her hakkı saklıdır. 2022. Usagi Sözlük. PROTOTİP SÜRÜMÜDÜR LÜTFEN KİŞİSEL BİLGİ GİRMEYİNİZ.
+        Her hakkı saklıdır. 2022. Usagi Sözlük. PROTOTİP SÜRÜMÜDÜR LÜTFEN
+        KİŞİSEL BİLGİ GİRMEYİNİZ.
       </footer>
     </div>
   );
