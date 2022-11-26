@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import Entry from "./Entry";
 import EntryArea from "./EntryArea";
@@ -31,7 +31,41 @@ const Movie = () => {
         cancelButtonText: 'Geri dön'
       })
     } else {
+      console.log(movie.id);
       console.log(newEntry);
+
+      // passed validation, so save changes
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", "Bearer " + jwtToken);
+
+      // We're adding new entry. We would use PATCH if we were updating
+      let method = "PUT";
+
+      const requestBody = {
+        entry: newEntry,
+        caption_id: movie.id,
+      };
+
+      let requestOptions = {
+        body: JSON.stringify(requestBody),
+        method: method,
+        headers: headers,
+        credentials: "include",
+      };
+
+      fetch(`${process.env.REACT_APP_BACKEND}/entries/captions/${movie.id}`, requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            console.log(data.error);
+          } else {
+            Navigate(`/baslik/${movie.id}`);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 
