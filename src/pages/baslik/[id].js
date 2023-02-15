@@ -6,13 +6,27 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 
 const CaptionId = () => {
+    const [loading, setLoading] = useState(true);
     const [caption, setCaption] = useState({ capt_text: "", id: 0 });
-    const [entries, setEntries] = useState([ { id: 0, entry: "Entry", user: { id: 0, name: "gguilt" }, date: "2023-01-14 14:09"} ]);
+    const [entries, setEntries] = useState([ { id: 0, entry_text: "Entry", user_id: 0, inserted_at: "2023-01-14 14:09"} ]);
     const supabase = useSupabaseClient();
     const router = useRouter();
     const { id } = router.query;
     const session = useSession();
     const [girdi, setGirdi] = useState("");
+
+    const fetchEntries = async () => {
+        if (!id) return;
+        setLoading(true);
+
+        const { data } = await supabase
+            .from("entries")
+            .select("*")
+            .filter("capt_id", "eq", id);
+
+        setEntries(data);
+        setLoading(false);
+    }
 
     useEffect(() => {
         const getCaption = async () => {
@@ -24,15 +38,22 @@ const CaptionId = () => {
                 .filter("id", "eq", id)
                 .single();
 
-                setCaption(data);
+            setCaption(data);
         };
 
         getCaption();
+        fetchEntries();
     }, [id]);
 
-    const formSubmitted = (event) => {
+    const formSubmitted = async (event) => {
         event.preventDefault();
-        console.log(girdi, "submitted");
+
+        let { error } = await supabase.from("entries").insert({ capt_id: id, user_id: session.user.id, entry_text: girdi});
+        if (error) throw error;
+
+        setGirdi("");
+
+        fetchEntries();
     }
 
     const girdiChange = (event) => {
@@ -52,12 +73,18 @@ const CaptionId = () => {
             }
             <h1>{caption.capt_text}</h1>
 
-            { entries.map((entry) => {
+            { loading && <div>Girdiler yükleniyor...</div>}
+
+            { !loading && entries.map((entry) => {
                 return (
                     <article key={entry.id}>
-                        <p>{entry.entry}</p>
+                        <p>{entry.entry_text}</p>
 
-                        <b><Link href={`/profil/${entry.user.id}`}>{entry.user.name}</Link></b> - <em>{entry.date}</em>
+                        <b>
+                            <Link href={`/profil/${entry.user_id}`}>{entry.user_id}</Link>
+                        </b>
+
+                        <em>{entry.inserted_at}</em>
                     </article>
                 )
             })}

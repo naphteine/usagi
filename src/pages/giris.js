@@ -5,15 +5,21 @@ import styles from "../styles/Login.module.css";
 import { useRouter } from 'next/router';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useEffect } from 'react';
 
 const Login = () => {
-    const session = useSession()
-    const router = useRouter()
-    const supabase = useSupabaseClient()
+    const session = useSession();
+    const router = useRouter();
+    const supabase = useSupabaseClient();
+
+    useEffect(() => {
+      if (session) {
+        router.push("/");
+      }
+    }, [session])
 
     return (
         <>
-
         <Header />
 
         <div className={styles.loginForm}>
@@ -21,7 +27,6 @@ const Login = () => {
                 supabaseClient={supabase}
                 appearance={{ theme: ThemeSupa }}
                 theme="light"
-                redirectTo="/"
                 localization={{
                     variables: {
                         "sign_up": {
