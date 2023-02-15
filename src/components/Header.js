@@ -13,20 +13,23 @@ const Header = () => {
 
     return (
         <header className={styles.header}>
-            <Link href="/">usagisözlük</Link>
+            <div className={styles.logo}>
+                <Link href="/">usagisözlük</Link> <em>iyi olan her şey</em>
+            </div>
+            
 
             {session ? (
-                <>
-                    <br />
-                    Girişli
-                    <Link href="/yeni">Başlık aç</Link>
-                    <Link href="/profil">Profil</Link>
+                <div>
+                    [{" "}
+                    <Link href="/yeni">Başlık aç</Link> ::{" "}
+                    <Link href="/profil">Profil</Link> ::{" "}
                     <button onClick={logout}>Çıkış</button>
-                </>
+                    {" "}]
+                </div>
             ) : (
                 <>
                     <br />
-                    Giriş yapmadınız.
+                    Giriş yapmadınız.{" "}
                     <Link href="/giris">Giriş yap</Link>
                 </>
             )}

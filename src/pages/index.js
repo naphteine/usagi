@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect } from "react";
 import Footer from "../components/Footer"
 import Header from "../components/Header"
@@ -11,7 +12,7 @@ const Home = ({ captions }) => {
       <main>
         <ul>
           {captions && captions.map((c) => {
-            return <li key={c.id}>{c.capt_text}</li>
+            return <li key={c.id}><Link href={`/baslik/${c.id}`}>{c.capt_text}</Link></li>
           })}
 
           {!captions && <div>Başlıklar bulunamadı</div>}
