@@ -4,15 +4,31 @@
     justify-content: space-between;
 }
 
-.header button {
-    background-color: darkcyan;
-    border: 1px solid black;
-    color: white;
-    border-radius: 20px;
-    padding: 0.2rem 1rem;
+.logo {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: indigo;
 }
 
-.header button:hover {
-    background-color: inherit;
+.description {
+    font-size: 0.5rem;
+}
+
+.button {
+    border: 1px solid indigo;
+    border-radius: 10px;
+    background-color: indigo;
+    text-decoration: none;
+    font-size: 1rem;
+    color: floralwhite;
+    font-family: serif;
+    margin: 0 0.2rem;
+    padding: 0.5rem 0.5rem;
+    transition: all 0.1s;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: floralwhite;
     color: black;
 }
