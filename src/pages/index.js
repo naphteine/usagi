@@ -11,7 +11,7 @@ const Home = ({ captions }) => {
       <main>
         <ul>
           {captions && captions.map((c) => {
-            <li key={c.id}>{c.capt_text}</li>
+            return <li key={c.id}>{c.capt_text}</li>
           })}
 
           {!captions && <div>Başlıklar bulunamadı</div>}
@@ -24,7 +24,7 @@ const Home = ({ captions }) => {
 }
 
 export async function getServerSideProps() {
-  let { data } = await supabase.from("captions").select()
+  let { data } = await supabase.from('captions').select()
 
   return {
     props: {

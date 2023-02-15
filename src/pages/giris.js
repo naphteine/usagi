@@ -3,7 +3,8 @@ import { useSession } from '@supabase/auth-helpers-react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import styles from "../styles/Login.module.css";
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Login = () => {
     const session = useSession()
@@ -11,11 +12,16 @@ const Login = () => {
     const supabase = useSupabaseClient()
 
     return (
+        <>
+
+        <Header />
+
         <div className={styles.loginForm}>
             <Auth
                 supabaseClient={supabase}
                 appearance={{ theme: ThemeSupa }}
                 theme="light"
+                redirectTo={window.location.origin}
                 localization={{
                     variables: {
                         "sign_up": {
@@ -60,6 +66,9 @@ const Login = () => {
                 }}
             />
         </div>
+
+        <Footer />
+        </>
     )
 }
 
