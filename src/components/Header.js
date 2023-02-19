@@ -1,5 +1,6 @@
 import styles from "@/styles/Header.module.css";
 import Link from "next/link";
+import Image from "next/image";
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useSession } from '@supabase/auth-helpers-react'
 
@@ -14,6 +15,7 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <div className={styles.logoArea}>
+                <Image src="/rabbit.svg" width={40} height={40} />
                 <Link className={styles.logo} href="/">usagisözlük</Link> <em className={styles.description}>iyi olan her şey</em>
             </div>
             

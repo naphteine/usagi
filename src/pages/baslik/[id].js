@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import styles from "@/styles/CaptionId.module.css";
 
 const CaptionId = () => {
     const [loading, setLoading] = useState(true);
@@ -24,7 +25,15 @@ const CaptionId = () => {
             .select("*")
             .filter("capt_id", "eq", id);
 
-        setEntries(data);
+            setEntries(data.map((entry) => {
+                const { data } = supabase
+                    .from("profiles")
+                    .select("*")
+                    .filter("id", "eq", entry.user_id);
+
+                console.log(data);
+                return { ...entry, user: data.username  };
+            }));
         setLoading(false);
     }
 
@@ -60,6 +69,15 @@ const CaptionId = () => {
         setGirdi(event.target.value);
     }
 
+    const dateConvert = (date) => {
+        const input = new Date(date);
+        
+        const months = ["ocak", "şubat", "mart", "nisan", "mayıs", "haziran", "temmuz", "ağustos", "eylül", "ekim", "kasım", "aralık"];
+        const month = months[input.getMonth()];
+
+        return `${input.getDate()} ${month} ${input.getFullYear()} ${input.getHours()}:${input.getMinutes()}`;
+    }
+
     return (
         <>
         <Header />
@@ -77,14 +95,14 @@ const CaptionId = () => {
 
             { !loading && entries.map((entry) => {
                 return (
-                    <article key={entry.id}>
+                    <article key={entry.id} className={styles.entry}>
                         <p>{entry.entry_text}</p>
 
                         <b>
-                            <Link href={`/profil/${entry.user_id}`}>{entry.user_id}</Link>
+                            <Link href={`/profil/${entry.user}`}>{entry.user}</Link>
                         </b>
-
-                        <em>{entry.inserted_at}</em>
+                        <br />
+                        <time dateTime={entry.inserted_at}>{dateConvert(entry.inserted_at)}</time>
                     </article>
                 )
             })}

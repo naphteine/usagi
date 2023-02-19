@@ -36,7 +36,7 @@ const New = () => {
         <Header />
 
         <main>
-            Başlık açma ekranı
+            <h1>Başlık Açma Ekranı</h1>
 
             <form onSubmit={formSubmitted}>
                 <label htmlFor="baslik">
@@ -45,11 +45,11 @@ const New = () => {
                 <input value={baslik} onChange={inputChange} id="baslik" name="baslik" placeholder="başlık başa"></input>
 
                 <label htmlFor="girdi">
-                    İlk Girdi
+                    Girdi
                 </label>
                 <textarea value={girdi} onChange={inputChange} id="girdi" name="girdi" placeholder="girdiniz"></textarea>
 
-                <button>Aç</button>
+                <button>Başlığı Aç</button>
             </form>
         </main>
 
