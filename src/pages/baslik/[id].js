@@ -26,13 +26,7 @@ const CaptionId = () => {
             .filter("capt_id", "eq", id);
 
             setEntries(data.map((entry) => {
-                const { data } = supabase
-                    .from("profiles")
-                    .select("*")
-                    .filter("id", "eq", entry.user_id);
-
-                console.log(data);
-                return { ...entry, user: data.username  };
+                return { ...entry, user: "gguilt"};
             }));
         setLoading(false);
     }
