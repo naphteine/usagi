@@ -1,11 +1,22 @@
 .footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem;
-    color: #8800ff;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
 }
 
 .footer a {
-    text-decoration: none;
-    color: #8800ff;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.footer p {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+  }
 }
