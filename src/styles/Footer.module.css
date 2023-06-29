@@ -2,11 +2,8 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
-}
-
-.footer a {
-  text-decoration: none;
-  color: #ffffff;
+  color: var(--cl-fg1);
+  font-weight: 500;
 }
 
 .footer p {

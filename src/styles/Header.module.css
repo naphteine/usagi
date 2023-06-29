@@ -2,13 +2,16 @@
   padding: 2rem;
   display: flex;
   justify-content: space-between;
-  color: #fff;
+  background-color: var(--cl-bg1);
+  color: #8800ff;
 }
 
 .logo {
-  font-size: 1.25rem;
+  font-size: 2rem;
   text-decoration: none;
-  color: #fff;
+  color: var(--cl-fg1);
+  font-weight: 800;
+  font-family: "Moirai One", sans;
 }
 
 .description {
