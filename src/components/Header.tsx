@@ -7,8 +7,9 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link href="/" className={styles.logo}>
+        usagi
         <Image priority src={rabbit} width={50} alt="usagisözlük" />
-        usagisozlük
+        sozlük
       </Link>
 
       <div className={styles.search}>
