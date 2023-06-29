@@ -6,6 +6,14 @@
   color: #8800ff;
 }
 
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .logo {
   font-size: 2rem;
   text-decoration: none;
